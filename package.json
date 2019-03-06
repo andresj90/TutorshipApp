@@ -1,0 +1,34 @@
+{
+  "name": "tutorshipapp",
+  "version": "1.0.0",
+  "description": "This application is being built-up from scratch applying MEAN STACK technology , this application's goal is to connect the students from a college in Colombia and will allow them to exchange knowledge so that they will become both more knowledgeable and better leaders.",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresj90/TutorshipApp.git"
+  },
+  "keywords": [
+    "mean",
+    "stack",
+    "nodejs",
+    "javascript",
+    "angular",
+    "mongodb"
+  ],
+  "author": "HyperPush Tech",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andresj90/TutorshipApp/issues"
+  },
+  "homepage": "https://github.com/andresj90/TutorshipApp#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "jest": "^24.1.0",
+    "mongoose": "^5.4.17"
+  }
+}
