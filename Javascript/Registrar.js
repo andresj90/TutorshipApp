@@ -27,27 +27,27 @@ $(document).ready(function(){
 });
 
 function validate_form(){
-    if($('nombre').val == ""){
+    if($('#nombre').val == "" || $('#nombre').val === null ){
         alert("el campo esta vacio.")
         $("#nombre").focus();
         return false;
     }
-    if($('apellidos').val == ""){
+    if($('#apellidos').val == "" || $('#apellidos').val === null){
         alert("el campo esta vacio.")
         $("#apellidos").focus();
         return false;
     }
-    if($('facultad').val == ""){
+    if($('#facultad').val == "" || $('#facultad').val === null){
         alert("el campo esta vacio.")
         $("#facultad").focus();
         return false;
     }
-    if($('nombre_usuario').val == ""){
+    if($('#nombre_usuario').val == "" || $('#nombre_usuario').val === null){
         alert("el campo esta vacio.")
         $("#nombre_usuario").focus();
         return false;
     }
-    if($('contraseña').val == ""){
+    if($('#contraseña').val == "" || $('#contraseña').val === null){
         alert("el campo esta vacio.")
         $("#contraseña").focus();
         return false;
