@@ -1,7 +1,7 @@
 {
   "name": "tutorshipapp",
   "version": "1.0.0",
-  "description": "This application is being built-up from scratch applying MEAN STACK technology , this application's goal is to connect the students from a college in Colombia and will allow them to exchange knowledge so that they will become both more knowledgeable and better leaders.",
+  "description": "This is project that has a clear goal which is to provide a service to students seeking out help for their weaknesses in some subjects at college, this app wil allow students to exchange knowledge and grow academically.",
   "main": "app.js",
   "scripts": {
     "test": "jest"
@@ -11,24 +11,27 @@
     "url": "git+https://github.com/andresj90/TutorshipApp.git"
   },
   "keywords": [
-    "mean",
-    "stack",
-    "nodejs",
-    "javascript",
-    "angular",
-    "mongodb"
+    "JavaScript",
+    "NodeJS",
+    "MongoDD",
+    "Express",
+    "Angular."
   ],
-  "author": "HyperPush Tech",
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "mongoose": "*",
+    "path": "*",
+    "bcryptjs": "*",
+    "passport": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "passport-jwt": "*"
+  },
+  "author": " <andresf.jaran@konradlorenz.edu.co>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/andresj90/TutorshipApp/issues"
   },
-  "homepage": "https://github.com/andresj90/TutorshipApp#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "jest": "^24.1.0",
-    "mongoose": "^5.4.17"
-  }
+  "homepage": "https://github.com/andresj90/TutorshipApp#readme"
 }
