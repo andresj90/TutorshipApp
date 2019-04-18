@@ -4,6 +4,8 @@ const rutaUsuarios = require('./controllers/users');
 const config = require('./config/database');
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const passport = require("passport");
+const path = require('path');
 
 const app = express(); // express () created the express application, app inherits all the prototype from the class 
 
@@ -24,9 +26,12 @@ mongoose.connection.on('error', (err) => {
     console.log(`Database error ${err}`);
 });
 
-//MiddleWare
+//MiddleWare 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session()); 
+require('./config/passport')(passport); //we call the file with the config for the strategy 
 
 //main route
 app.get('/', (req, res) => {

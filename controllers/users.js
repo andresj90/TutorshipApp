@@ -1,6 +1,9 @@
 const express = require("express");
 const routerUsuario = express.Router(); //interface to create the own routes for the users of our app
 const Usuario = require('../model/users');
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const configDB = require('../config/database');
 
 routerUsuario.get('/perfil', (req, res, next) => {
     res.send({
@@ -9,7 +12,44 @@ routerUsuario.get('/perfil', (req, res, next) => {
 });
 
 routerUsuario.post('/login', (req, res, next) => {
+    let loginCredentials = {
+        usuario: req.body.usuario,
+        contrasena: req.body.contrasena
+    }
 
+    Usuario.buscarUsuarioConNombreUsuario(loginCredentials.usuario, (err, usuario) => {
+        if(err) throw err; 
+        if(!usuario) {
+            res.json({
+                sucess: false, 
+                msg: 'Usuario no encontrado'
+            })
+        }
+
+        Usuario.compararContrasena(loginCredentials.contrasena, usuario.contrasena, (err, success) => {
+            if(success) {
+            const tokenGenerado = jwt.sign({usuario : usuario}, configDB.database.secret, {expiresIn: 55555555});
+
+            res.json({
+                success: true,
+                usuario : {
+                    nombre: usuario.nombre, 
+                    apellido: usuario.apellido, 
+                    codigo: usuario.codigo, 
+                    email: usuario.email,
+                    contrasena: usuario.constrasena, 
+                    programa: usuario.programa, 
+                    token: 'JWT ' + tokenGenerado
+                }
+            });
+            }else{
+                res.json({
+                    success: false,
+                    msg: 'Contraseña Incorrecta'
+                })
+            }
+        })
+    })
 });
 
 routerUsuario.post('/registrarse', (req, res) => {

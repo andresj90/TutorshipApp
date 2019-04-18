@@ -68,8 +68,8 @@ const Usuario = module.exports =  mongoose.model('Usuario', usuarioSchema);
 
 //methods for the businnes logic
 module.exports.agregarUsuario = function (nuevoUsuario, callback) {
-    /* genero el hash de la contrasena que ingreso el nuevo usuario 
-       para que se no vea su contrasena real. 
+    /* I get the user entered into the system and then sfter validating 
+    that the data is correct 
     */
      bcrypt.genSalt(10,((err, salt)  => {
          if(err) throw err;
@@ -78,5 +78,22 @@ module.exports.agregarUsuario = function (nuevoUsuario, callback) {
              nuevoUsuario.contrasena = hash; 
              nuevoUsuario.save(callback);
          });
-     }))
+     }));
+}
+
+module.exports.buscarUsuarioConId = function(idUsuario, callback) {
+    Usuario.findById({_id:idUsuario}, callback);
+}
+
+module.exports.buscarUsuarioConNombreUsuario = function (nombreUsuario, callback) {
+     Usuario.findOne({
+         $or: [{codigo: nombreUsuario}, {email: nombreUsuario}]
+     }, callback);
+}
+
+module.exports.compararContrasena = function(contrasenaIngresada, contrasenaUsuario, callback) {
+    bcrypt.compare(contrasenaIngresada, contrasenaUsuario, (err,success) => {
+        if(err) throw err; 
+        callback(null, success);
+    })
 }
