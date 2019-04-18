@@ -1,14 +1,37 @@
 const express = require("express"); //module require for the routes, they connect view and the model 
+const mongoose = require("mongoose");
 const rutaUsuarios = require('./controllers/users');
+const config = require('./config/database');
+const cors = require('cors');
+const bodyParser = require("body-parser");
 
 const app = express(); // express () created the express application, app inherits all the prototype from the class 
 
 //MiddleWare : code that runs in the middle of the front and backend
 
 
+//setup for database connection 
+mongoose.connect(config.database.name, { useNewUrlParser: true } , (err) => {
+    if (err) throw err;
+});
+
+mongoose.connection.on('connected', () => {
+    console.log(`Connection to the database ${config.database.name} established`);
+});
+
+
+mongoose.connection.on('error', (err) => {
+    console.log(`Database error ${err}`);
+});
+
+//MiddleWare
+app.use(cors());
+app.use(bodyParser.json());
+
 //main route
 app.get('/', (req, res) => {
-    res.status(404).send("Sorry could not find resource");
+    
+    res.send({person: "person"})
 });
 
 //every route for the users will be handle by these only route below 
