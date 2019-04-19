@@ -46,7 +46,8 @@ const usuarioSchema = mongoose.Schema({
         required: true,
         default: null,
         lowercase: true,
-        enum: ["ingenieria de sistemas", "matematicas"]
+        enum: ["ingenieria de sistemas", "matematicas", "ingenieria industrial", 
+                "mercadeo", "negocios internacionales", "psicologia", "posgrado"]
     },
 
     debilidades: [{
@@ -96,4 +97,12 @@ module.exports.compararContrasena = function(contrasenaIngresada, contrasenaUsua
         if(err) throw err; 
         callback(null, success);
     })
+}
+
+module.exports.verificarUsuario = function(codigoIngresado, callback) { 
+    Usuario.findOne({codigo: codigoIngresado}, callback);
+}
+
+module.exports.verificarEmail = function(emailIngresado, callback) {
+    Usuario.findOne({email: emailIngresado}, callback);
 }
