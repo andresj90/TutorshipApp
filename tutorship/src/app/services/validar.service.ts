@@ -6,7 +6,7 @@ export class ValidarService {
   constructor() { }
 
   validateRegister(user) {
-    if (user.name == undefined || user.username == undefined || user.email == undefined || user.password == undefined) {
+    if (user.nombre == undefined || user.apellido == undefined || user.codigo == undefined || user.email == undefined || user.password || user.programa) {
       return false;
     } else {
       return true;

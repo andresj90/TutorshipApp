@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
+import { AuthService } from './services/auth.service';
 
 
 //services
@@ -34,10 +35,12 @@ const APP_ROUTES : Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
+    FormsModule
   ],
   providers: [
-    ValidarService
+    ValidarService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

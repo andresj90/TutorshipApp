@@ -1,18 +1,21 @@
 <div class="row justify-content-md-center">
     
-    <form class="needs-validation" novalidate>
+    <form class="needs-validation"  (ngSubmit)="onSubmit()" #registrar="ngForm" novalidate>
         <h4 class="mb-3">Registro</h4>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="firstName">Primer nombre</label>
-          <input type="text" class="form-control" id="firstName"  required>
-          <div class="invalid-feedback">
-            Valid first name is required.
+          <input type="text" class="form-control" name="firstName" [(ngModel)]="firstName" #name="ngModel" required>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div  class="invalid-feedback" *ngIf="name.errors.required">
+                Por fabor ingrese su nombre.
+            </div>
+            
           </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="lastName">apellidos</label>
-          <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="lastName" required>
           <div class="invalid-feedback">
             Valid last name is required.
           </div>
@@ -20,7 +23,7 @@
       </div>     
       <div class="mb-3">
           <label for="codigo">codigo</label>
-          <input type="text" class="form-control" id="codigo" placeholder="" value="" required>
+          <input type="text" class="form-control" name="codigo" [(ngModel)]="codigo" required>
           <div class="invalid-feedback">
             Valid last name is required.
           </div>
@@ -28,29 +31,29 @@
 
         <div class="mb-3">
             <label for="password">contraseña</label>
-            <input type="text" class="form-control" id="pasword" placeholder="" value="" required>
+            <input type="text" class="form-control" name="pasword" [(ngModel)]="pasword" required>
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
           </div>
       <div class="mb-3">
         <label for="email">Correo </label>
-        <input type="email" class="form-control" id="email" placeholder="you@example.com">
-        <div class="invalid-feedback">
+        <input type="email" class="form-control" name="email" [(ngModel)]="email" placeholder="you@example.com" required>
+        <div class="invalid-feedback" >
           Please enter a valid email address for shipping updates.
         </div>
       </div>  
       <div class="mb-3">
           <label for="country">Carrera</label>
-          <select class="custom-select d-block w-100" id="carrera" required>
-            <option value="">Choose...</option>
-            <option>Ingenieria de sistemas</option>
+          <select class="custom-select d-block w-100" name="carrera" required>  
+            <option *ngFor="let carrer of carrerss" value="carrer">{{carrer}}</option>          
           </select>
           <div class="invalid-feedback">
             Please select a valid country.
           </div>
         </div>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Registrarse</button>
+        <button class="btn btn-primary btn-lg " type="submit" 
+        [disabled]="!registrar.form.valid" (click)="RegisterClick()">Registrarse</button>
 </form>
 </div>
      
