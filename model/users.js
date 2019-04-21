@@ -106,3 +106,8 @@ module.exports.verificarUsuario = function(codigoIngresado, callback) {
 module.exports.verificarEmail = function(emailIngresado, callback) {
     Usuario.findOne({email: emailIngresado}, callback);
 }
+
+module.exports.actualizarInformacionUsuario = function(usuario, callback) {
+    console.log(usuario);
+    Usuario.findOneAndUpdate({_id: usuario._id},{nombre: nombre, rol : rol}, callback);
+}

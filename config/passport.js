@@ -9,14 +9,14 @@ module.exports = function (passport) {
     options.secretOrKey = configDB.database.secret;
 
     passport.use(new JWTStrategy(options, (jwt_payload, done) => {
-        Usuario.buscarUsuarioConId(jwt_payload.usuario.id, (err, user) => {
+        Usuario.buscarUsuarioConId(jwt_payload.usuario._id, (err, usuario) => {
             if (err) {
                 return done(err, false);
             }
-            if (!user) {
+            if (!usuario) {
                 return done(null, false);
             } else {
-                return done(null, user);
+                return done(null, usuario);
             }
         });
     }));

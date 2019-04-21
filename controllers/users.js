@@ -5,11 +5,11 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const configDB = require('../config/database');
 
-routerUsuario.get('/perfil', (req, res, next) => {
-    res.send({
-        "usuario": "andres"
-    });
-});
+// routerUsuario.get('/perfil', (req, res, next) => {
+//     res.send({
+//         "usuario": "andres"
+//     });
+// });
 
 routerUsuario.post('/login', (req, res, next) => {
     let loginCredentials = {
@@ -23,7 +23,7 @@ routerUsuario.post('/login', (req, res, next) => {
             res.json({
                 sucess: false,
                 msg: 'Usuario no encontrado'
-            })
+            });
         }
 
         Usuario.compararContrasena(loginCredentials.contrasena, usuario.contrasena, (err, success) => {
@@ -41,7 +41,6 @@ routerUsuario.post('/login', (req, res, next) => {
                         apellido: usuario.apellido,
                         codigo: usuario.codigo,
                         email: usuario.email,
-                        contrasena: usuario.constrasena,
                         programa: usuario.programa,
                         token: 'JWT ' + tokenGenerado
                     }
@@ -56,6 +55,9 @@ routerUsuario.post('/login', (req, res, next) => {
     })
 });
 
+/*res.json is important for the observable that does validation from the front 
+         it has to always be put when doing businness logic operations
+*/
 routerUsuario.post('/registrarse', (req, res) => {
     //create object of type Usuario which is our collection class for usuarios
     let nuevoUsuario = new Usuario({
@@ -64,24 +66,26 @@ routerUsuario.post('/registrarse', (req, res) => {
         codigo: req.body.codigo,
         email: req.body.email,
         contrasena: req.body.constrasena,
-        programa: req.body.programa
+        programa: req.body.programa,
+        rol: Array.prototype.push(req.body.rol)
     });
     /*confirm that both email and user  have not been added to the database */
     Usuario.verificarUsuario(nuevoUsuario.codigo, (err, usuario) => {
-        if (err || usuario) {
+        if(err) throw err;
+        if (usuario) {
             res.json({
                 success: false,
                 msg: 'No se pudo agregar codigo de usuario'
             });
         } else {
             Usuario.verificarEmail(nuevoUsuario.email, (err, usuario) => {
-                if (err || usuario) {
+                if(err) throw err;
+                if (usuario) {
                     res.json({
                         success: false,
                         msg: 'No se pudo agregar email de usuario'
                     });
                 } else {
-
                     Usuario.agregarUsuario(nuevoUsuario, (err) => {
                         if (err) {
                             res.json({
@@ -101,11 +105,40 @@ routerUsuario.post('/registrarse', (req, res) => {
 
             })
         }
-        /*res.json is important for the observable that does validation from the front 
-         it has to always be put when doing businness logic operations
-        */
     });
 
+});
+
+/* Passport.authenticate checks if the user has logged in and if the token is a valid one */
+routerUsuario.get('/perfil', passport.authenticate('jwt', { session:false }), (req, res) => {
+    res.json({
+       usuarioLogueado : {
+           Nombre: `${req.user.nombre} ${req.user.apellido}`, 
+           Email: req.user.email, 
+           Codigo: req.user.codigo, 
+           Programa: req.user.programa, 
+           Rol: req.user.rol,
+       }
+   })
+});
+
+routerUsuario.post('/perfil', passport.authenticate('jwt', {session:false}),(req,res) => {
+   
+        nombre =req.body.nombre,
+        apellido= req.body.apellido,
+        rol= Array.prototype.push(req.body.rol)
+   
+
+    Usuario.actualizarInformacionUsuario(req.user, (err, usuario) => {
+          if(err) throw err; 
+          if(usuario) {
+              res.json({
+                  success:true, 
+                  msg: "Informacion modificada"
+              });
+              console.log(usuario);
+          }
+    }); 
 });
 
 module.exports = routerUsuario;
