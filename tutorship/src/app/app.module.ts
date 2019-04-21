@@ -5,9 +5,10 @@ import { HttpModule } from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrarComponent } from './registrar/registrar.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrarComponent } from './components/registrar/registrar.component';
+import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
 
 const APP_ROUTES : Routes = [
@@ -21,7 +22,8 @@ const APP_ROUTES : Routes = [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
