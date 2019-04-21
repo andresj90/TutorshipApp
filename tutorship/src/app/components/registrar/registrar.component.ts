@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidarService } from 'app/services/validar.service';
+
 
 @Component({
   selector: 'app-registrar',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registrar.component.css']
 })
 export class RegistrarComponent implements OnInit {
-
-  constructor() { }
-
+  username: string;
+  lastname: string;
+  codigo: string;
+  password: string;
+  email: string;
+  carrera = [];
+  
+  constructor(
+    
+    
+  ) { }
+   
   ngOnInit() {
+    
   }
 
 }

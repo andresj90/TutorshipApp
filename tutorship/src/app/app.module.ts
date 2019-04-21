@@ -11,6 +11,7 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
 import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
 
+
 const APP_ROUTES : Routes = [
   {path:"", component: HomeComponent},
   {path:"login", component: LoginComponent},
