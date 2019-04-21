@@ -12,6 +12,10 @@ import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 import { registerModuleFactory } from '@angular/core/src/linker/ng_module_factory_loader';
 
 
+//services
+
+import { ValidarService } from 'app/services/validar.service';
+
 const APP_ROUTES : Routes = [
   {path:"", component: HomeComponent},
   {path:"login", component: LoginComponent},
@@ -32,7 +36,9 @@ const APP_ROUTES : Routes = [
     HttpModule,
     RouterModule.forRoot(APP_ROUTES)
   ],
-  providers: [],
+  providers: [
+    ValidarService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

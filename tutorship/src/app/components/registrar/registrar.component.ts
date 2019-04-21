@@ -16,7 +16,7 @@ export class RegistrarComponent implements OnInit {
   carrera = [];
   
   constructor(
-    
+    private validarService : ValidarService
     
   ) { }
    
