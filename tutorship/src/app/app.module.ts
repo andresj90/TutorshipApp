@@ -16,6 +16,7 @@ import { AuthService } from './services/auth.service';
 //services
 
 import { ValidarService } from 'app/services/validar.service';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 const APP_ROUTES : Routes = [
   {path:"", component: HomeComponent},
@@ -36,7 +37,8 @@ const APP_ROUTES : Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(APP_ROUTES),
-    FormsModule
+    FormsModule,
+    FlashMessagesModule
   ],
   providers: [
     ValidarService,
