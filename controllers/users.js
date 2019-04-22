@@ -65,16 +65,16 @@ routerUsuario.post('/registrarse', (req, res) => {
         apellido: req.body.apellido,
         codigo: req.body.codigo,
         email: req.body.email,
-        contrasena: req.body.constrasena,
+        contrasena: req.body.contrasena,
         programa: req.body.programa,
-        rol: Array.prototype.push(req.body.rol)
     });
+
     /*confirm that both email and user  have not been added to the database */
     Usuario.verificarUsuario(nuevoUsuario.codigo, (err, usuario) => {
         if(err) throw err;
         if (usuario) {
             res.json({
-                success: false,
+                codigo: false,
                 msg: 'No se pudo agregar codigo de usuario'
             });
         } else {
@@ -82,17 +82,16 @@ routerUsuario.post('/registrarse', (req, res) => {
                 if(err) throw err;
                 if (usuario) {
                     res.json({
-                        success: false,
+                        email: false,
                         msg: 'No se pudo agregar email de usuario'
                     });
                 } else {
-                    Usuario.agregarUsuario(nuevoUsuario, (err) => {
+                    Usuario.agregarUsuario(nuevoUsuario, (err, usuario) => {
                         if (err) {
                             res.json({
                                 sucess: false,
                                 msg: "Usuario no pudo ser agregado"
                             });
-                            console.log(err)
                         } else {
                             res.json({
                                 sucess: true,

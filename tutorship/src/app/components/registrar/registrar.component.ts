@@ -5,13 +5,16 @@ import { User } from './user';
 import { FlashMessagesService } from "angular2-flash-messages";
 import { AuthService } from 'app/services/auth.service';
 
-
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.css']
 })
 export class RegistrarComponent implements OnInit {
+
+
+  careras = ['Ingenieria de sistemas', 'Ingenieria industrial', 'Matematicas'];
+
   nombre: string;
   apellido: string;
   codigo: string;
@@ -60,7 +63,7 @@ export class RegistrarComponent implements OnInit {
   }
 
   RegisterClick(){
-    if(!this.validarService.validateRegister(this.model)){
+    if(!this.validarService.validateUserFields(this.model)){
       this.flashMessage.show('alguno de los campos esta vacio', {cssClass: 'alert-danger', timeout: 3000});
     }this.auth.registerUser(this.model).subscribe(data =>{
       if(data.success){

@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ValidarService {
 
-  constructor() { }
+  constructor(
+    private http: Http
+  ) { }
 
-  validateRegister(user) {
-    if (user.nombre == undefined || user.apellido == undefined || user.codigo == undefined || user.email == undefined || user.password || user.programa) {
+  validateUserFields(user) {
+    if (user.nombre == undefined || user.apellido == undefined || user.codigo == undefined
+      || user.email == undefined || user.password || user.programa) {
       return false;
     } else {
       return true;
@@ -19,6 +24,13 @@ export class ValidarService {
     return re.test(email);
   }
 
+  validateStudentCode(codigo) {
+    if (!/[Aa-zZ]/.test(codigo) && codigo.length != 9) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
 
 }

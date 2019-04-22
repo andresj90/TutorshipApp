@@ -3,6 +3,7 @@ import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,11 +17,12 @@ import { AuthService } from './services/auth.service';
 //services
 
 import { ValidarService } from 'app/services/validar.service';
+import { RegisterComponent } from './components/register/register.component';
 
 const APP_ROUTES : Routes = [
   {path:"", component: HomeComponent},
   {path:"login", component: LoginComponent},
-  {path:"registrar", component: RegistrarComponent}
+  {path:"registrar", component: RegisterComponent}
 ];
 
 @NgModule({
@@ -29,14 +31,17 @@ const APP_ROUTES : Routes = [
     HomeComponent,
     LoginComponent,
     RegistrarComponent,
-    NavBarComponent
+    NavBarComponent,
+    RegisterComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(APP_ROUTES),
-    FormsModule
+    FormsModule,
+    FlashMessagesModule
   ],
   providers: [
     ValidarService,

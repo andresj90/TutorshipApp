@@ -44,10 +44,7 @@ const usuarioSchema = mongoose.Schema({
     programa: {
         type: String,
         required: true,
-        default: null,
-        lowercase: true,
-        enum: ["ingenieria de sistemas", "matematicas", "ingenieria industrial", 
-                "mercadeo", "negocios internacionales", "psicologia", "posgrado"]
+        default: null
     },
 
     debilidades: [{
