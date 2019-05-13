@@ -1,0 +1,9 @@
+<div *ngIf="usuarioLogueado" >
+    <h2 class="page-header">{{usuarioLogueado.Nombre}} Info</h2>
+    <ul class="list-group">
+      <li class="list-group-item">ID : {{usuarioLogueado.Codigo}} </li>
+      <li class="list-group-item">EMAIL : {{usuarioLogueado.Email}}</li>
+      <li class="list-group-item">USERNAME: {{usuarioLogueado.Programa}}</li>
+      <li class="list-group-item">ROL: {{usuarioLogueado.Rol}}</li>
+    </ul>
+  </div>

@@ -18,15 +18,16 @@
     "Angular."
   ],
   "dependencies": {
-    "express": "*",
-    "body-parser": "*",
-    "mongoose": "*",
-    "path": "*",
+    "angular2-jwt": "^0.2.3",
     "bcryptjs": "*",
-    "passport": "*",
+    "body-parser": "*",
     "cors": "*",
+    "express": "*",
     "jsonwebtoken": "*",
-    "passport-jwt": "*"
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*",
+    "path": "*"
   },
   "author": " <andresf.jaran@konradlorenz.edu.co>",
   "license": "MIT",

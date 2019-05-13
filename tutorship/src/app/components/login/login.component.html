@@ -1,18 +1,18 @@
 <div class="container">
   <div class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" (submit)="loguearUserOnSystem()">
       <img class="mb-5" src="/assets/think2.png">
       <h1 class="h3 mb-3 font-weight-normal">Iniciar sesion</h1>
-      <label for="codigo" class="sr-only">codigo</label>
-      <input type="email" name="codigo" class="form-control" placeholder="codigo" required autofocus>
+      <label for="codigo" class="sr-only">codigo/email</label>
+      <input type="email" name="usuario" class="form-control" [(ngModel)]="usuario" placeholder="código o email" required >
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" name="contrasena" class="form-control" placeholder="Password" required>
+      <input type="password" name="contrasena" class="form-control" [(ngModel)]="contrasena" placeholder="contraseña" required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Recordarme
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" value="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
     </form>
   </div>
