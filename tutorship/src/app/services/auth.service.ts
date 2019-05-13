@@ -54,5 +54,5 @@ export class AuthService {
 
   loadTokenStored(){
     this.userToken = localStorage.getItem('id_token');
-  }
+
 }

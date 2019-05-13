@@ -17,8 +17,10 @@ import { AuthService } from './services/auth.service';
 //services
 
 import { ValidarService } from 'app/services/validar.service';
+
 import { RegisterComponent } from './components/register/register.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+
 
 const APP_ROUTES : Routes = [
   {path:"", component: HomeComponent},
