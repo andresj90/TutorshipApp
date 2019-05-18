@@ -66,12 +66,12 @@ routerUsuario.post('/registrarse', (req, res) => {
         codigo: req.body.codigo,
         email: req.body.email,
         contrasena: req.body.contrasena,
-        programa: req.body.programa,
+        programa: req.body.programa
     });
 
     /*confirm that both email and user  have not been added to the database */
     Usuario.verificarUsuario(nuevoUsuario.codigo, (err, usuario) => {
-        if(err) throw err;
+        if (err) throw err;
         if (usuario) {
             res.json({
                 codigo: false,
@@ -79,7 +79,7 @@ routerUsuario.post('/registrarse', (req, res) => {
             });
         } else {
             Usuario.verificarEmail(nuevoUsuario.email, (err, usuario) => {
-                if(err) throw err;
+                if (err) throw err;
                 if (usuario) {
                     res.json({
                         email: false,
@@ -109,35 +109,39 @@ routerUsuario.post('/registrarse', (req, res) => {
 });
 
 /* Passport.authenticate checks if the user has logged in and if the token is a valid one */
-routerUsuario.get('/perfil', passport.authenticate('jwt', { session:false }), (req, res) => {
+routerUsuario.get('/perfil', passport.authenticate('jwt', {
+    session: false
+}), (req, res) => {
     res.json({
-       usuarioLogueado : {
-           Nombre: `${req.user.nombre} ${req.user.apellido}`, 
-           Email: req.user.email, 
-           Codigo: req.user.codigo, 
-           Programa: req.user.programa, 
-           Rol: req.user.rol,
-       }
-   })
+        usuarioLogueado: {
+            Nombre: `${req.user.nombre} ${req.user.apellido}`,
+            Email: req.user.email,
+            Codigo: req.user.codigo,
+            Programa: req.user.programa,
+            Rol: req.user.rol,
+        }
+    })
 });
 
-routerUsuario.post('/perfil', passport.authenticate('jwt', {session:false}),(req,res) => {
-   
-        nombre =req.body.nombre,
-        apellido= req.body.apellido,
-        rol= Array.prototype.push(req.body.rol)
-   
+routerUsuario.post('/perfil', passport.authenticate('jwt', {
+    session: false
+}), (req, res) => {
+
+    nombre = req.body.nombre,
+        apellido = req.body.apellido,
+        rol = Array.prototype.push(req.body.rol)
+
 
     Usuario.actualizarInformacionUsuario(req.user, (err, usuario) => {
-          if(err) throw err; 
-          if(usuario) {
-              res.json({
-                  success:true, 
-                  msg: "Informacion modificada"
-              });
-              console.log(usuario);
-          }
-    }); 
+        if (err) throw err;
+        if (usuario) {
+            res.json({
+                success: true,
+                msg: "Informacion modificada"
+            });
+            console.log(usuario);
+        }
+    });
 });
 
 module.exports = routerUsuario;

@@ -58,6 +58,9 @@ const usuarioSchema = mongoose.Schema({
         required: true,
         default: null,
         lowercase: true
+    }],
+    horario: [{
+        type: String 
     }]
 });
 

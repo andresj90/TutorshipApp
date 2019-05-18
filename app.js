@@ -6,7 +6,7 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require('path');
-
+const rutaTutorias = require('./controllers/tutorias');
 const app = express(); // express () created the express application, app inherits all the prototype from the class 
 
 //MiddleWare : code that runs in the middle of the front and backend
@@ -41,6 +41,9 @@ app.get('/', (req, res) => {
 
 //every route for the users will be handle by these only route below 
 app.use('/usuarios', rutaUsuarios);
+
+//every route for the tutoring will be handled by the route below
+app.use('/tutorias', rutaTutorias);
 
 //port for the application 
 app.listen(3000, 'localhost', (err) => {
