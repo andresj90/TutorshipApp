@@ -10,4 +10,14 @@
 </html>
  -->
 
- <app-home2></app-home2>
+ 
+
+ <div *ngIf="returnStatusUser(); then trueBlock ; else falseBlock"> </div>
+ <ng-template #trueBlock>
+    <app-home2></app-home2>
+</ng-template>
+<ng-template #falseBlock>
+    <app-navbar></app-navbar>
+    <flash-messages></flash-messages>
+    <router-outlet></router-outlet>
+/</ng-template>

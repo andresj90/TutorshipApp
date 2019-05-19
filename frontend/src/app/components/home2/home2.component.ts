@@ -1,4 +1,7 @@
+import { UserLoguedI } from './../../interfaces/userLogued';
+import { AuthServiceService } from './../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-home2',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Home2Component implements OnInit {
 
-  constructor() { }
+   
+     usuario: string;
+     contrasena: string;
+     usuarioAuthenticado : UserLoguedI; 
+
+  constructor(
+    private authService : AuthServiceService) { }
 
   ngOnInit() {
+  }
+
+  logUser(){
+    let user = {
+      usuario: this.usuario, 
+      contrasena: this.contrasena
+    }
+    console.log(user)
+    this.authService.logUserOnBackend(user).subscribe((data) => {
+        this.usuarioAuthenticado = data;
+        this.authService.getTokenAndLoggedUser(this.usuarioAuthenticado.usuario.token, this.usuarioAuthenticado.usuario);
+        console.log(this.authService.IsLoggedIn());
+    });
   }
 
 }

@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
+import { JwtModule } from '@auth0/angular-jwt';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,6 +18,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { HomeComponent } from './components/home/home.component';
 import { Home2Component } from './components/home2/home2.component';
 
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -31,11 +37,16 @@ import { Home2Component } from './components/home2/home2.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
   ],
   providers: [
     AuthServiceService,
-    ValidateService,
+    ValidateService
   ],
   bootstrap: [AppComponent]
 })

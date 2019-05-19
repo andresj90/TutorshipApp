@@ -3,5 +3,5 @@ export interface userI {
     status: boolean,
     email: boolean,
     msg:string,
-    success : boolean
+    success : boolean,
 }
