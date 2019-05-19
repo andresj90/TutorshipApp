@@ -1,5 +1,7 @@
 export interface userI {
-    name : string,
+    codigo : boolean,
     status: boolean,
-    email: boolean
+    email: boolean,
+    msg:string,
+    success : boolean
 }

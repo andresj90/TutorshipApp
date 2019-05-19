@@ -11,7 +11,9 @@ import { HttpClientModule } from  '@angular/common/http';
 import { ValidateService } from './services/validate.service';
 import { AuthServiceService } from './services/auth-service.service';
 import { FormsModule } from '@angular/forms';
-import { FlashMessagesService } from 'angular2-flash-messages';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { HomeComponent } from './components/home/home.component';
+import { Home2Component } from './components/home2/home2.component';
 
 
 @NgModule({
@@ -20,18 +22,20 @@ import { FlashMessagesService } from 'angular2-flash-messages';
     LoginComponent,
     RegistrationComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent,
+    Home2Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [
     AuthServiceService,
     ValidateService,
-    FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })

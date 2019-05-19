@@ -15,8 +15,8 @@ import { userI } from 'src/app/interfaces/user';
 })
 export class RegistrationComponent implements OnInit {
 
-  careras = ['Ingenieria de sistemas', 'Ingenieria industrial', 'Matematicas', 'Psicologia', 'Mercadeo', 
-              'Negocios Internacionales', 'Posgrado'];
+  careras = ['Ingenieria de sistemas', 'Ingenieria industrial', 'Matematicas', 'Psicologia', 'Mercadeo',
+    'Negocios Internacionales', 'Posgrado'];
   nombre: string;
   apellido: string;
   codigo: string;
@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
   contrasena: string;
   programa: string;
 
-  usuario : userI;
+  usuario: userI;
 
   constructor(
     private flashMessage: FlashMessagesService,
@@ -34,10 +34,7 @@ export class RegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.getTestRoute().subscribe(data => {
-      this.usuario = data; 
-      console.log(this.usuario.email)
-    })
+
   }
 
   registerNewUser() {
@@ -49,15 +46,18 @@ export class RegistrationComponent implements OnInit {
       contrasena: this.contrasena.trim(),
       programa: this.programa
     }
-
-    console.log(usuario);
-
-    if (!this.validateService.validateStudentCode(usuario.codigo)) {
-      // this.flashMessage.show("El código estudiantil debe ser 9 digitos", { cssClass: 'alert-danger', timeout: 3000 });
-      console.log("El código estudiantil debe ser 9 digitos");
+    if (!this.validateService.validateEmail(usuario.email)) {
+      this.flashMessage.show("Formato de correo incorrecto", { cssClass: 'alert-danger', timeout: 5000 });
     } else {
       this.authService.registerUser(usuario).subscribe(data => {
-        console.log("usuario :"  + data )
+        this.usuario = data;
+        if (this.usuario.codigo) {
+          this.flashMessage.show(this.usuario.msg, { cssClass: 'alert-danger', timeout: 5000 });
+        } else if (this.usuario.email) {
+          this.flashMessage.show(this.usuario.msg, { cssClass: 'alert-danger', timeout: 5000 });
+        } else {
+          this.flashMessage.show(this.usuario.msg, { cssClass: 'alert-success', timeout: 5000 });
+        }
       })
     }
   }

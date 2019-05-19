@@ -74,7 +74,7 @@ routerUsuario.post('/registrarse', (req, res) => {
         if (err) throw err;
         if (usuario) {
             res.json({
-                codigo: false,
+                codigo: true,
                 msg: 'No se pudo agregar codigo de usuario'
             });
         } else {
@@ -82,19 +82,19 @@ routerUsuario.post('/registrarse', (req, res) => {
                 if (err) throw err;
                 if (usuario) {
                     res.json({
-                        email: false,
+                        email: true,
                         msg: 'No se pudo agregar email de usuario'
                     });
                 } else {
                     Usuario.agregarUsuario(nuevoUsuario, (err, usuario) => {
                         if (err) {
                             res.json({
-                                sucess: false,
+                                success: false,
                                 msg: "Usuario no pudo ser agregado"
                             });
                         } else {
                             res.json({
-                                sucess: true,
+                                success: true,
                                 msg: "Usuario agregado al sistema"
 
                             })

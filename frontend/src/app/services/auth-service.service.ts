@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-// import { tokenNotExpired } from "angular2-jwt";
+import { tokenNotExpired } from "angular2-jwt";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { userI } from '../interfaces/user';
@@ -16,10 +16,10 @@ export class AuthServiceService {
   usuarioLogueado: Object;
 
 
-  registerUser(user){
+  registerUser(user): Observable<userI>{
     let headers = new HttpHeaders ();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/usuarios/registrarse',user, {headers: headers});
+    return this.http.post<userI>('http://localhost:3000/usuarios/registrarse',user, {headers: headers});
   }
 
   logUserOnBackend(user) {
@@ -54,9 +54,9 @@ export class AuthServiceService {
     localStorage.clear();
   }
 
-  // IsLoggedIn(){
-  //   return tokenNotExpired('id_token');
-  // }
+  IsLoggedIn(){
+    return tokenNotExpired('id_token');
+  }
 
   loadTokenStored(){
     this.userToken = localStorage.getItem('id_token');

@@ -4,14 +4,14 @@
     <div class="row">
       <div class="col-md-6 mb-3">
         <label for="firstName">Nombres</label>
-        <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required 
-         pattern="[aA-zZ]{3,10}"  title= "El nombre debe incluir mínimo 3 letras">
-        
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required pattern="[a-zA-Z]+"
+          title="El nombre debe incluir mínimo 3 letras">
+
       </div>
       <div class="col-md-6 mb-3">
         <label for="lastName">Apellidos</label>
-        <input type="text" class="form-control" name="apellido" [(ngModel)]="apellido" required
-        pattern="[aA-zZ]{3,10}"  title= "El apellido debe incluir mínimo 3 letras"> 
+        <input type="text" class="form-control" name="apellido" [(ngModel)]="apellido" required pattern="[aA-zZ]{3,10}"
+          title="El apellido debe incluir mínimo 3 letras">
       </div>
     </div>
 
@@ -22,36 +22,31 @@
           <span class="input-group-text">Codigo</span>
         </div>
         <input type="text" class="form-control" name="codigo" placeholder="506223588" [(ngModel)]="codigo"
-         pattern="[0-9]{9}" maxlength="9" title="El código estudiantil debe contener 9 dígitos" required>
-        </div>
+          pattern="^(50)([0-9]{7})$" maxlength="9" title="el codigo incluye 9 digitos, comienza en 50" required>
+      </div>
     </div>
 
     <div class="mb-3">
       <label for="email">Email</label>
-      <input type="text" class="form-control" name="email" placeholder="you@example.com" [(ngModel)]="email" 
-       pattern= "^((&quot;[\w-\s]+&quot;)|([\w-]+(?:\.[\w-]+)*)|(&quot;[\w-\s]+&quot;)([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)"
-       title="el formato es incorrecto, debe contener @dominio.com" placeholder="example@email.com" required>
-       
-     </div>
+      <input type="email" class="form-control" name="email" placeholder="you@example.com" [(ngModel)]="email"
+        placeholder="example@email.com" required>
+
+    </div>
 
     <div class="mb-3">
       <label for="address">Contrasena</label>
-      <input type="password" class="form-control" name="contrasena" [(ngModel)]="contrasena" required>
-      <div class="invalid-feedback">
-        Please enter your shipping address.
-      </div>
+      <input type="password" class="form-control" name="contrasena" [(ngModel)]="contrasena" required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,10}$"
+        title="La contraseña debe contener mínimo 8 caracteres entre ellos una mayúscula, minúscula y un número">
     </div>
 
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-9">
         <label for="country">Programa Académico</label>
-        <select class="custom-select d-block w-100" name="programa" [(ngModel)]="programa" required>
+        <select class="form-control" name="programa" [(ngModel)]="programa" required>
           <option *ngFor="let carrera of careras">{{carrera}}</option>
         </select>
-        <div class="invalid-feedback">
-          Please select a valid country.
-        </div>
       </div>
     </div>
     <hr class="mb-4">

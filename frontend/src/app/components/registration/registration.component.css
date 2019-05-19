@@ -2,3 +2,7 @@
     margin: 1% 12% 1% 12%;
     width: 80%;
 }
+
+.custom-select d-block w-100{
+    width: 50%;
+}
