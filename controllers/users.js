@@ -13,14 +13,12 @@ const configDB = require('../config/database');
 
 routerUsuario.post('/login', (req, res, next) => {
 
-    console.log(req.body)
 
     let loginCredentials = {
         usuario: req.body.usuario,
         contrasena: req.body.contrasena
     }
 
-    console.log(loginCredentials);
 
     Usuario.buscarUsuarioConNombreUsuario(loginCredentials.usuario, (err, usuario) => {
         if (err) throw err;
