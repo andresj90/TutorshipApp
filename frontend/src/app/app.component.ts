@@ -19,8 +19,6 @@ export class AppComponent {
   }
 
   ngOnInit(): void {    
-    this.authService.getUserProfile().subscribe(data => {
-      console.log(data);
-     });
+
   }
 }

@@ -5,14 +5,9 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const configDB = require('../config/database');
 
-// routerUsuario.get('/perfil', (req, res, next) => {
-//     res.send({
-//         "usuario": "andres"
-//     });
-// });
 
 routerUsuario.post('/login', (req, res, next) => {
-
+    console.log(req.body)
 
     let loginCredentials = {
         usuario: req.body.usuario,
@@ -45,7 +40,7 @@ routerUsuario.post('/login', (req, res, next) => {
                         codigo: usuario.codigo,
                         email: usuario.email,
                         programa: usuario.programa,
-                        token: tokenGenerado
+                        token: 'jwt '+ tokenGenerado
                     }
                 });
             } else {
@@ -112,9 +107,7 @@ routerUsuario.post('/registrarse', (req, res) => {
 });
 
 /* Passport.authenticate checks if the user has logged in and if the token is a valid one */
-routerUsuario.get('/perfil', passport.authenticate('jwt', {
-    session: false
-}), (req, res) => {
+routerUsuario.get('/perfil', (req, res) => {
     res.json({
         usuarioLogueado: {
             Nombre: `${req.user.nombre} ${req.user.apellido}`,
