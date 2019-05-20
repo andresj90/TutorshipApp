@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/andresj90/TutorshipApp/issues"
   },
-  "homepage": "https://github.com/andresj90/TutorshipApp#readme"
+  "homepage": "https://github.com/andresj90/TutorshipApp#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
 }

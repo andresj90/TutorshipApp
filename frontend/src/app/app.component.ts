@@ -14,8 +14,13 @@ export class AppComponent {
   ) {
 
   }
-
   returnStatusUser(): boolean {
     return this.authService.IsLoggedIn();
+  }
+
+  ngOnInit(): void {    
+    this.authService.getUserProfile().subscribe(data => {
+      console.log(data);
+     });
   }
 }

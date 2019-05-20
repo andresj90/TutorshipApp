@@ -42,7 +42,7 @@ export class AuthServiceService {
     let headers = new HttpHeaders();
     this.loadTokenStored();
     headers.append('Content-type', 'application/json');
-    headers.append('Authorization', this.userToken);
+    headers.append('Authorization', 'JWT ' + this.userToken);
     return this.http.get('http://localhost:3000/usuarios/perfil', { headers: headers })
   }
 
