@@ -83,6 +83,9 @@ body {
     }
   }
   
+  .maredit{
+    margin: 1%;
+  }
   @media (min-width: 62em) {
     .featurette-heading {
       margin-top: 7rem;
